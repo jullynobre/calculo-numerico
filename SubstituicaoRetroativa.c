@@ -60,7 +60,7 @@ int subsRetroativa(double **m, int n, double x[]) {
         soma = 0;
         for(j = i+1; j<n; j++) soma += m[i][j] * x[j];
         if (m[i][i] == 0) {
-            if (m[i][n] != soma) return 2; // SL incompatível
+            if (fabs(m[i][n] - soma) > __FLT16_EPSILON__) return 2; // SL incompatível
             else { // x[i] -> variável livre
                 x[i] = 0;
                 tipoSL = 1;
